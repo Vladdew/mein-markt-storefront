@@ -115,11 +115,11 @@ jobs:
 
       - name: Build the backend
         working-directory: ../backend
-        run: yarn build:admin
+        run: npm run build:admin
 
       - name: Setup search in the backend
         working-directory: ../backend
-        run: yarn add medusa-plugin-meilisearch
+        run: npm i medusa-plugin-meilisearch
 
       - name: Move custom medusa config to the backend
         run: cp .github/scripts/medusa-config.js ../backend/medusa-config.js
@@ -133,16 +133,16 @@ jobs:
         run: medusa develop &
 
       - name: Install packages
-        run: yarn install -y
+        run: npm install -y
 
       - name: Install playwright
-        run: yarn playwright install --with-deps
+        run: npm i playwright --with-deps
 
       - name: Setup frontend
-        run: yarn build
+        run: npm run build
 
       - name: Run Tests
-        run: yarn test-e2e
+        run: npm run test-e2e
 
       - uses: actions/upload-artifact@v3
         if: always()
